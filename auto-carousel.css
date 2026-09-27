@@ -1,0 +1,220 @@
+/* Reusable smooth auto-moving box rows */
+[data-auto-carousel] {
+    --carousel-gap: 14px;
+    --carousel-card-width: 260px;
+    --carousel-duration: 28s;
+    display: block !important;
+    overflow: hidden !important;
+    position: relative;
+}
+
+.auto-carousel-track {
+    display: flex;
+    align-items: stretch;
+    gap: var(--carousel-gap);
+    width: max-content;
+    animation: autoCarouselSlide var(--carousel-duration) linear infinite;
+    will-change: transform;
+}
+
+[data-auto-carousel].is-paused .auto-carousel-track {
+    animation-play-state: paused;
+}
+
+.auto-carousel-track > * {
+    flex: 0 0 var(--carousel-card-width);
+    max-width: var(--carousel-card-width);
+}
+
+.auto-carousel-track > .about-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.support-grid[data-auto-carousel] {
+    --carousel-card-width: 178px;
+    --carousel-gap: 10px;
+    --carousel-duration: 16s;
+}
+
+.support-grid[data-auto-carousel] .auto-carousel-track {
+    animation-direction: reverse;
+}
+
+.community-guidelines-page [data-auto-carousel] .auto-carousel-track {
+    animation-direction: reverse;
+}
+
+.features-grid[data-auto-carousel] {
+    --carousel-card-width: 210px;
+    --carousel-gap: 12px;
+    --carousel-duration: 19s;
+}
+
+.stats-section[data-auto-carousel] {
+    --carousel-card-width: 130px;
+    --carousel-gap: 8px;
+    --carousel-duration: 14s;
+}
+
+.support-grid[data-auto-carousel] .support-card {
+    width: 178px !important;
+    height: 106px !important;
+    min-height: 106px !important;
+    max-height: 106px !important;
+    padding: 11px 12px !important;
+}
+
+.support-grid[data-auto-carousel] .support-icon {
+    width: 21px;
+    height: 21px;
+    margin-bottom: 6px;
+    font-size: 10px;
+}
+
+.support-grid[data-auto-carousel] .support-card h2 {
+    font-size: 12px;
+    line-height: 1.22;
+    margin-bottom: 5px;
+}
+
+.support-grid[data-auto-carousel] .support-card p {
+    min-height: 0;
+    margin-bottom: 6px;
+    font-size: 10px;
+    line-height: 1.32;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.support-grid[data-auto-carousel] .support-card a {
+    font-size: 10px;
+}
+
+.features-grid[data-auto-carousel] .feature-box {
+    min-height: 130px;
+    padding: 16px 14px;
+}
+
+.features-grid[data-auto-carousel] .feature-box h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.features-grid[data-auto-carousel] .feature-box p {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.stats-section[data-auto-carousel] .stats-box {
+    min-height: 52px;
+    padding: 8px 12px;
+}
+
+.quick-standard[data-auto-carousel] {
+    --carousel-card-width: 205px;
+    --carousel-gap: 9px;
+    --carousel-duration: 20s;
+}
+
+.rule-grid[data-auto-carousel],
+.split-rules[data-auto-carousel],
+.report-steps[data-auto-carousel],
+.enforcement-grid[data-auto-carousel] {
+    --carousel-card-width: 205px;
+    --carousel-gap: 9px;
+    --carousel-duration: 23s;
+}
+
+.split-rules[data-auto-carousel] {
+    --carousel-card-width: 180px;
+    --carousel-duration: 20s;
+}
+
+.enforcement-grid[data-auto-carousel] {
+    --carousel-duration: 34s;
+}
+
+.rule-list[data-auto-carousel] {
+    --carousel-card-width: 250px;
+    --carousel-gap: 9px;
+    --carousel-duration: 28s;
+}
+
+@keyframes autoCarouselSlide {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-1 * var(--carousel-shift, 50%)));
+    }
+}
+
+@media (max-width: 700px) {
+    [data-auto-carousel] {
+        --carousel-card-width: min(230px, 72vw);
+        --carousel-duration: 24s;
+    }
+
+    .support-grid[data-auto-carousel] {
+        --carousel-card-width: min(178px, 72vw);
+    }
+
+    .rule-list[data-auto-carousel] {
+        --carousel-card-width: min(250px, 78vw);
+        --carousel-duration: 28s;
+    }
+
+    .stats-section[data-auto-carousel] {
+        --carousel-card-width: 128px;
+    }
+}
+
+.back-btn,
+.back-btn:link,
+.back-btn:visited,
+.back-btn:hover,
+.back-btn:focus-visible,
+.back-btn:active,
+.popup-home-link,
+.popup-home-link:link,
+.popup-home-link:visited,
+.popup-home-link:hover,
+.popup-home-link:focus-visible,
+.popup-home-link:active,
+.back-btn *,
+.popup-home-link *,
+.back-sign{
+    color: rgba(255,255,255,0.86) !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.back-btn,
+.popup-home-link{
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    font-size: 28px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    text-decoration: none !important;
+}
+
+.back-sign{
+    line-height: 1 !important;
+}
+
+.drawer-close,
+.close-popup{
+    display: none !important;
+}

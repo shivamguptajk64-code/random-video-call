@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#09090b">
+    <title>VibeMatch Premium Shop</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Luckiest+Guy&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="shop.css?v=match-store-neutral-26">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="shop-overrides.css?v=history-above-wallet-29">
+</head>
+<body>
+<header class="shop-nav">
+    <a href="index.html" class="shop-back-link" aria-label="Back to home" title="Back"><span aria-hidden="true">&lt;</span></a>
+    <div class="shop-nav-left">
+        <a href="index.html" class="shop-brand"><img src="favicon.png" alt="VibeMatch logo"><span class="shop-logo-text">VIBE<span class="shop-logo-highlight">MATCH</span></span></a>
+    </div>
+    <div class="shop-nav-actions">
+        <button class="nav-balance" id="viewWallet" title="Wallet"><i class="fas fa-coins"></i><b id="walletCoins">150</b><span>coins</span></button>
+    </div>
+</header>
+
+<main class="shop-page">
+    <section class="shop-hero">
+        <span class="eyebrow"><i class="fas fa-store"></i> VibeMatch Store</span>
+        <div class="hero-copy">
+            <h1>More ways to match.<br>More ways to connect.</h1>
+            <div class="hero-tags">
+                <span><i class="fas fa-infinity"></i> Unlimited unlocked chats</span>
+                <span><i class="fas fa-bolt"></i> Instant match upgrades</span>
+            </div>
+        </div>
+        <div class="wallet-column">
+            <button class="wallet-history" id="walletHistory"><i class="fas fa-clock-rotate-left"></i> Purchase history</button>
+            <aside class="wallet-card" id="walletCard">
+                <div class="wallet-top"><span>My wallet</span><i class="fas fa-wallet"></i></div>
+                <strong><span id="walletCoinsLarge">150</span> <small>coins</small></strong>
+                <div class="daily-pass"><i class="fas fa-comment-dots"></i><div><b>3 free chat passes daily</b></div></div>
+            </aside>
+        </div>
+    </section>
+
+    <nav class="shop-tabs" id="shopTabs" aria-label="Shop categories">
+        <button class="active" data-target="coin-packs"><i class="fas fa-coins"></i> Coins</button>
+        <button data-target="vip-plans"><i class="fas fa-crown"></i> VIP</button>
+        <button data-target="match-passes"><i class="fas fa-sliders"></i> Match filters</button>
+        <button data-target="gifts-boosts"><i class="fas fa-gift"></i> Gifts & boosts</button>
+    </nav>
+
+    <section class="store-section" id="coin-packs">
+        <div class="section-top"><div><span class="section-kicker">Top up</span><h2>Coin packs</h2></div></div>
+        <div class="product-grid">
+            <article class="product-card"><span class="product-icon"><i class="fas fa-coins"></i></span><h3>120 coins</h3><small>Starter pack</small><strong>₹49</strong><button class="buy-btn" data-kind="coins" data-title="120 coins" data-price="49" data-coins="120">Buy</button></article>
+            <article class="product-card popular"><em>Most popular</em><span class="product-icon"><i class="fas fa-coins"></i></span><h3>300 coins</h3><small>+30 bonus coins</small><strong>₹99</strong><button class="buy-btn" data-kind="coins" data-title="330 coins" data-price="99" data-coins="330">Buy</button></article>
+            <article class="product-card"><span class="product-icon"><i class="fas fa-sack-dollar"></i></span><h3>700 coins</h3><small>+100 bonus coins</small><strong>₹199</strong><button class="buy-btn" data-kind="coins" data-title="800 coins" data-price="199" data-coins="800">Buy</button></article>
+            <article class="product-card"><em class="gold">Best value</em><span class="product-icon" aria-hidden="true">&#128142;</span><h3>1,600 coins</h3><small>+400 bonus coins</small><strong>₹399</strong><button class="buy-btn" data-kind="coins" data-title="2,000 coins" data-price="399" data-coins="2000">Buy</button></article>
+        </div>
+
+    </section>
+
+    <section class="store-section" id="vip-plans">
+        <div class="section-top"><div><span class="section-kicker">Membership</span><h2>VibeMatch VIP</h2></div><p>Every premium matching tool included.</p></div>
+        <div class="vip-benefits"><span><i class="fas fa-check"></i> Unlimited new chats</span><span><i class="fas fa-check"></i> All match filters</span><span><i class="fas fa-check"></i> Priority matching</span><span><i class="fas fa-check"></i> VIP badge</span></div>
+        <div class="plan-grid">
+            <article class="plan-card"><span>7 days</span><h3>₹99</h3><small>₹14/day</small><button class="buy-btn outline" data-kind="plan" data-title="VIP · 7 days" data-price="99">Choose</button></article>
+            <article class="plan-card selected"><em>Save 38%</em><span>1 month</span><h3>₹249</h3><small>₹8/day · Most popular</small><button class="buy-btn" data-kind="plan" data-title="VIP · 1 month" data-price="249">Choose</button></article>
+            <article class="plan-card"><em>Best price</em><span>3 months</span><h3>₹599</h3><small>Just ₹200/month</small><button class="buy-btn outline" data-kind="plan" data-title="VIP · 3 months" data-price="599">Choose</button></article>
+        </div>
+    </section>
+
+    <section class="store-section" id="match-passes">
+        <div class="section-top"><div><span class="section-kicker">Your choice</span><h2>Match filter passes</h2></div><p>Activate only the filter you need.</p></div>
+        <div class="utility-grid">
+            <article class="utility-card"><i class="fas fa-earth-asia blue"></i><div><h3>Country pass</h3><p>One selected country for 30 min.</p></div><button class="coin-btn" data-kind="spend" data-title="Country filter · 30 min" data-cost="30">30 <i class="fas fa-coins"></i></button></article>
+            <article class="utility-card"><i class="fas fa-venus-mars violet"></i><div><h3>Gender pass</h3><p>Your gender preference for 30 min.</p></div><button class="coin-btn" data-kind="spend" data-title="Gender filter · 30 min" data-cost="40">40 <i class="fas fa-coins"></i></button></article>
+            <article class="utility-card"><i class="fas fa-language green"></i><div><h3>Language pass</h3><p>Prioritize your language for 1 hour.</p></div><button class="coin-btn" data-kind="spend" data-title="Language filter · 1 hour" data-cost="25">25 <i class="fas fa-coins"></i></button></article>
+            <article class="utility-card"><i class="fas fa-heart pink"></i><div><h3>Interest pass</h3><p>Shared-interest matching for 1 hour.</p></div><button class="coin-btn" data-kind="spend" data-title="Interest filter · 1 hour" data-cost="25">25 <i class="fas fa-coins"></i></button></article>
+        </div>
+    </section>
+
+    <section class="store-section" id="gifts-boosts">
+        <div class="section-top"><div><span class="section-kicker">Stand out</span><h2>Gifts & boosts</h2></div><p>Small extras for a better conversation.</p></div>
+        <div class="gift-grid">
+            <article class="gift-card"><span>🌹</span><h3>Rose <small>A simple hello</small></h3><button class="coin-btn" data-kind="spend" data-title="Rose gift" data-cost="10">10 <i class="fas fa-coins"></i></button></article>
+            <article class="gift-card"><span>☕</span><h3>Coffee <small>Keep talking</small></h3><button class="coin-btn" data-kind="spend" data-title="Coffee gift" data-cost="20">20 <i class="fas fa-coins"></i></button></article>
+            <article class="gift-card"><span>💎</span><h3>Diamond <small>Make it special</small></h3><button class="coin-btn" data-kind="spend" data-title="Diamond gift" data-cost="100">100 <i class="fas fa-coins"></i></button></article>
+            <article class="gift-card"><span>🚀</span><h3>Boost <small>Priority for 1 hour</small></h3><button class="coin-btn" data-kind="spend" data-title="Profile boost · 1 hour" data-cost="75">75 <i class="fas fa-coins"></i></button></article>
+        </div>
+
+    </section>
+
+    <section class="shop-trust">
+        <button type="button" id="trustCheckout"><i class="fas fa-lock"></i><span><b>Secure checkout</b><small>UPI, cards and wallets</small></span></button>
+        <button type="button" id="trustPricing"><i class="fas fa-receipt"></i><span><b>Clear pricing</b><small>Taxes shown before payment</small></span></button>
+        <a href="help.html#payments"><i class="fas fa-headset"></i><span><b>Payment support</b><small>Help when you need it</small></span></a>
+    </section>
+</main>
+
+<div class="checkout-overlay" id="checkoutModal" aria-hidden="true"><div class="checkout-card" role="dialog" aria-modal="true"><button class="modal-close" id="checkoutClose"><i class="fas fa-xmark"></i></button><span class="section-kicker">Secure checkout</span><h2>Complete purchase</h2><div class="order-summary"><span id="checkoutItem">Coin pack</span><strong id="checkoutPrice">₹0</strong></div><p class="payment-label">Choose payment method</p><div class="payment-methods"><button class="active" data-payment="UPI"><i class="fas fa-mobile-screen"></i><span>UPI<small>GPay, PhonePe, Paytm</small></span><i class="fas fa-circle-check"></i></button><button data-payment="Card"><i class="fas fa-credit-card"></i><span>Debit / Credit card<small>Visa, Mastercard, RuPay</small></span><i class="far fa-circle"></i></button><button data-payment="Wallet"><i class="fas fa-wallet"></i><span>Wallet<small>Supported wallets</small></span><i class="far fa-circle"></i></button></div><button class="pay-btn" id="confirmPurchase">Continue with UPI <i class="fas fa-arrow-right"></i></button><small class="checkout-legal"><i class="fas fa-lock"></i> Your payment details are encrypted.</small></div></div>
+<div class="history-overlay" id="historyModal" aria-hidden="true"><div class="history-card"><button class="modal-close" id="historyClose"><i class="fas fa-xmark"></i></button><h2>Purchase history</h2><div id="historyList"></div></div></div>
+<div class="pricing-overlay" id="pricingModal" aria-hidden="true"><div class="pricing-card" role="dialog" aria-modal="true" aria-labelledby="pricingTitle"><button class="modal-close" id="pricingClose" aria-label="Close pricing details"><i class="fas fa-xmark"></i></button><span class="section-kicker">Clear pricing</span><h2 id="pricingTitle">Know before you pay</h2><div class="pricing-details"><p><i class="fas fa-tags"></i><span><b>Upfront prices</b><small>The complete item price is shown before checkout.</small></span></p><p><i class="fas fa-receipt"></i><span><b>No hidden charges</b><small>Any applicable tax or payment fee appears before confirmation.</small></span></p><p><i class="fas fa-clock-rotate-left"></i><span><b>Purchase record</b><small>Completed orders are available in Purchase history.</small></span></p></div><button class="pricing-action" id="viewCoinPricing">View coin packs</button></div></div>
+<div class="shop-toast" id="shopToast" role="status" aria-live="polite"></div>
+<script src="token-wallet.js?v=chat-pass-copy-1"></script>
+<script src="shop.js?v=working-trust-actions-27"></script>
+</body>
+</html>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeMatch - Profile Portal</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="profile.css?v=social-popup-fix-1">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <aside class="profile-sidebar">
+        <a href="index.html" class="profile-back-link" aria-label="Back to home" title="Back">
+            <span aria-hidden="true">&lt;</span>
+        </a>
+        <nav class="profile-nav">
+            <a class="active" href="#profile" data-section="profile"><i class="fas fa-user-shield"></i> User Profile</a>
+            <a href="#share" data-section="share"><i class="fas fa-share-nodes"></i> Share Profile</a>
+            <a href="#edit" data-section="edit"><i class="fas fa-pen"></i> Edit Profile</a>
+            <a href="#history" data-section="history"><i class="fas fa-clock-rotate-left"></i> Chat History</a>
+            <a href="#security" data-section="security"><i class="fas fa-shield-halved"></i> Safety</a>
+            <a href="#account" data-section="account"><i class="fas fa-gear"></i> Account</a>
+            <a href="videochat.html"><i class="fas fa-video"></i> Video Chat</a>
+        </nav>
+    </aside>
+
+    <main class="profile-main">
+        <header class="profile-header">
+            <div>
+                <h1>User Intelligence Dashboard</h1>
+            </div>
+            <div class="header-actions">
+                <button id="shareShortcut" class="header-icon-btn" type="button" aria-label="Share profile">
+                    <i class="fas fa-share-nodes"></i>
+                </button>
+                <label class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input id="profileSearch" type="search" placeholder="Search user, country, interest...">
+                </label>
+                <button id="refreshProfile" class="refresh-icon-btn" type="button" aria-label="Refresh profile">
+                    <i class="fas fa-rotate"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="profile-grid">
+            <article class="panel profile-panel view-panel" id="profile" data-section="profile">
+                <div class="panel-head">
+                    <div class="profile-head-actions">
+                        <button class="social-count-btn" type="button" data-social-list="followers">
+                            <strong id="friendsCount">0</strong>
+                            <span>Followers</span>
+                        </button>
+                        <button class="social-count-btn" type="button" data-social-list="following">
+                            <strong id="followingCount">0</strong>
+                            <span>Following</span>
+                        </button>
+                        <span class="status-pill">Verified</span>
+                    </div>
+                </div>
+                <div class="profile-row">
+                    <div class="avatar" id="profileAvatar">U</div>
+                    <div>
+                        <h3 id="profileHandle">@user_name</h3>
+                        <p id="profileName">User</p>
+                    </div>
+                </div>
+                <div class="public-profile-actions" id="publicProfileActions" hidden>
+                    <a id="publicStartVideo" href="videochat.html">
+                        <i class="fas fa-video"></i>
+                        <span>Start Video Chat</span>
+                    </a>
+                    <a id="publicMessageUser" href="message.html">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Message</span>
+                    </a>
+                </div>
+                <div class="detail-list">
+                    <div><span>Email</span><strong id="profileEmail">user@example.com</strong></div>
+                    <div><span>Phone</span><strong id="profilePhone">+91 98765 43210</strong></div>
+                    <div><span>Login Method</span><strong id="loginMethod">Email or phone</strong></div>
+                    <div><span>Gender</span><strong id="profileGender">Selected in setup</strong></div>
+                    <div><span>Country</span><strong id="profileCountry">Selected in setup</strong></div>
+                    <div><span>Languages</span><strong id="profileLanguages">Hindi, English</strong></div>
+                    <button class="interest-detail-box" id="profileInterestBox" type="button">
+                        <span>Interests</span>
+                        <strong class="chip-area" id="interestChips"></strong>
+                    </button>
+                </div>
+            </article>
+
+            <article class="panel wide view-panel" id="shareProfile" data-section="share">
+                <div class="share-profile-shell">
+                    <div class="share-hero">
+                        <div class="share-identity">
+                            <div class="avatar share-avatar" id="shareProfileAvatar">U</div>
+                            <div>
+                                <p class="eyebrow">Share Profile</p>
+                                <h2 id="shareProfileName">User</h2>
+                                <p id="shareProfileHandle">@user_name</p>
+                            </div>
+                        </div>
+                        <div class="share-status-cluster">
+                            <span class="share-status-badge" id="shareVisibilityBadge">Public link active</span>
+                            <span class="share-token" id="shareTokenLabel">vm-user</span>
+                        </div>
+                    </div>
+
+                    <div class="share-control-strip">
+                        <label class="share-toggle">
+                            <input id="shareVisibilityToggle" type="checkbox" checked>
+                            <span aria-hidden="true"></span>
+                            <strong>Public sharing</strong>
+                        </label>
+                        <button id="regenerateShareLink" class="share-secondary-btn" type="button">
+                            <i class="fas fa-arrows-rotate"></i>
+                            <span>Regenerate link</span>
+                        </button>
+                    </div>
+
+                    <div class="share-layout">
+                        <div class="share-link-stack">
+                            <label class="share-link-row">
+                                <span><i class="fas fa-id-badge"></i> Profile link</span>
+                                <div class="share-link-control">
+                                    <input id="publicProfileLink" type="text" readonly>
+                                    <button class="share-copy-btn share-public-action" type="button" data-copy-target="publicProfileLink">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copy</span>
+                                    </button>
+                                    <button id="nativeShareProfile" class="share-icon-action share-public-action" type="button" aria-label="Share profile link">
+                                        <i class="fas fa-share-from-square"></i>
+                                    </button>
+                                </div>
+                            </label>
+
+                            <label class="share-link-row">
+                                <span><i class="fas fa-user-plus"></i> Invite link</span>
+                                <div class="share-link-control">
+                                    <input id="inviteProfileLink" type="text" readonly>
+                                    <button class="share-copy-btn" type="button" data-copy-target="inviteProfileLink">
+                                        <i class="fas fa-copy"></i>
+                                        <span>Copy</span>
+                                    </button>
+                                    <button id="nativeShareInvite" class="share-icon-action" type="button" aria-label="Share invite link">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </label>
+
+                            <label class="share-message-box">
+                                <span>Invite message</span>
+                                <textarea id="inviteShareText" rows="4" readonly></textarea>
+                                <button class="share-copy-btn" type="button" data-copy-target="inviteShareText">
+                                    <i class="fas fa-copy"></i>
+                                    <span>Copy message</span>
+                                </button>
+                            </label>
+                        </div>
+
+                        <div class="share-qr-panel">
+                            <canvas id="shareQrCanvas" width="236" height="236" aria-label="Profile QR code"></canvas>
+                            <div class="share-qr-actions">
+                                <button id="downloadShareQr" class="share-secondary-btn" type="button">
+                                    <i class="fas fa-download"></i>
+                                    <span>Download QR</span>
+                                </button>
+                                <a id="openPublicProfile" class="share-secondary-btn" href="#" target="_blank" rel="noopener">
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                    <span>Preview</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p id="shareFeedback" class="share-feedback" aria-live="polite"></p>
+                </div>
+            </article>
+
+            <article class="panel wide view-panel" id="editProfilePage" data-section="edit">
+                <form class="edit-profile-card" id="editProfileForm">
+                    <div class="panel-head">
+                        <div>
+                            <p class="eyebrow">Edit Profile</p>
+                            <h2>Update your profile details</h2>
+                        </div>
+                    </div>
+
+                    <div class="edit-photo-row">
+                        <div class="avatar edit-preview" id="editPhotoPreview">U</div>
+                        <label class="photo-upload-btn">
+                            <i class="fas fa-camera"></i>
+                            <span>Change Photo</span>
+                            <input id="editProfilePhoto" type="file" accept="image/*">
+                        </label>
+                    </div>
+
+                    <div class="edit-form-grid">
+                        <label>Name<input id="editName" type="text" maxlength="40" required></label>
+                        <label>Email<input id="editEmail" type="email"></label>
+                        <label>Phone<input id="editPhone" type="tel"></label>
+                        <label>Gender<input id="editGender" class="picker-input" type="text" placeholder="Select gender" readonly data-picker="gender"></label>
+                        <label>Country<input id="editCountry" class="picker-input" type="text" placeholder="Select country" readonly data-picker="country"></label>
+                        <label>Languages<input id="editLanguages" class="picker-input" type="text" placeholder="Select languages" readonly data-picker="languages"></label>
+                        <label>Interests<input id="editInterests" class="picker-input" type="text" placeholder="Select interests" readonly data-picker="interests"></label>
+                    </div>
+
+                    <div class="edit-actions">
+                        <p id="profileSaveMessage" class="profile-save-message" aria-live="polite"></p>
+                        <button class="done-profile-btn" type="submit">
+                            <i class="fas fa-check"></i> Save
+                        </button>
+                    </div>
+                </form>
+            </article>
+
+            <article class="panel wide view-panel" id="history" data-section="history">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Conversation Audit</p>
+                        <h2>Recent chat activity</h2>
+                    </div>
+                    <div class="history-tools">
+                        <button id="selectAllHistory" type="button">
+                            <i class="fas fa-check-double"></i> Select All
+                        </button>
+                        <button id="deleteSelectedHistory" class="danger" type="button" disabled>
+                            <i class="fas fa-trash-can"></i> Delete
+                        </button>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Select</th>
+                                <th>User</th>
+                                <th>Country</th>
+                                <th>Event</th>
+                                <th>Interests</th>
+                                <th>Date & Time</th>
+                                <th>Duration</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTable"></tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article class="panel view-panel" id="security" data-section="security">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Trust Operations</p>
+                        <h2>Safety Snapshot</h2>
+                    </div>
+                </div>
+                <div class="safety-stack">
+                    <div><i class="fas fa-circle-check"></i><span>No active bans</span></div>
+                    <div><i class="fas fa-user-lock"></i><span>Camera permission required before matching</span></div>
+                    <div><i class="fas fa-flag"></i><span>Reports trigger profile review queue</span></div>
+                    <div><i class="fas fa-eye-slash"></i><span>Profile visibility stays private by default</span></div>
+                    <div><i class="fas fa-user-check"></i><span>Only active users can start a video match</span></div>
+                    <div><i class="fas fa-database"></i><span>Local audit data synced from video chat</span></div>
+                    <a href="community-guidelines.html" class="safety-guidelines-link">
+                        <i class="fas fa-shield-heart"></i><span>Read Community Guidelines</span>
+                    </a>
+                </div>
+            </article>
+
+            <article class="panel view-panel" id="account" data-section="account">
+                <div class="panel-head">
+                    <div>
+                        <p class="eyebrow">Account</p>
+                        <h2>Login & Account Controls</h2>
+                    </div>
+                </div>
+                <div class="account-actions">
+                    <button id="logoutAccount" class="account-btn" type="button">
+                        <i class="fas fa-right-from-bracket"></i>
+                        <span>Log Out</span>
+                    </button>
+                    <button id="deleteAccount" class="account-btn danger" type="button">
+                        <i class="fas fa-trash-can"></i>
+                        <span>Delete Account</span>
+                    </button>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <div class="choice-popup" id="choicePopup" style="display:none;">
+        <div class="choice-popup-card">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow" id="choicePopupEyebrow">Choose</p>
+                    <h2 id="choicePopupTitle">Select option</h2>
+                </div>
+                <button class="choice-popup-close" id="choicePopupClose" type="button" aria-label="Close picker">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="choice-popup-options" id="choicePopupOptions"></div>
+            <div class="choice-popup-actions">
+                <button id="choicePopupDone" type="button">
+                    <i class="fas fa-check"></i> Done
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="choice-popup social-popup" id="socialPopup" style="display:none;">
+        <div class="choice-popup-card social-popup-card">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow">People</p>
+                    <h2 id="socialPopupTitle">Friends</h2>
+                </div>
+                <button class="choice-popup-close" id="socialPopupClose" type="button" aria-label="Close list">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mini-list social-popup-list" id="socialPopupList"></div>
+        </div>
+    </div>
+
+    <div class="choice-popup otp-popup" id="phoneOtpPopup" style="display:none;">
+        <div class="choice-popup-card otp-popup-card">
+            <div class="panel-head">
+                <div>
+                    <p class="eyebrow">Phone verification</p>
+                    <h2>Verify your new number</h2>
+                </div>
+                <button class="choice-popup-close" id="phoneOtpClose" type="button" aria-label="Close OTP popup">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="otp-copy" id="phoneOtpCopy">Enter the OTP sent to your new phone number.</p>
+            <label class="otp-field">
+                OTP
+                <input id="phoneOtpInput" type="text" maxlength="6" inputmode="numeric" autocomplete="one-time-code" placeholder="Enter 6 digit OTP">
+            </label>
+            <p class="otp-message" id="phoneOtpMessage" aria-live="polite"></p>
+            <div class="choice-popup-actions">
+                <button id="phoneOtpVerify" type="button">
+                    <i class="fas fa-check"></i> Verify & Save
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="choice-popup delete-account-popup" id="deleteAccountPopup" style="display:none;">
+        <div class="choice-popup-card delete-account-card">
+            <div class="delete-account-hero">
+                <button class="choice-popup-close" id="deleteAccountClose" type="button" aria-label="Close delete account popup">
+                    <i class="fas fa-times"></i>
+                </button>
+                <p class="eyebrow">Account closure</p>
+                <h2>Before you leave</h2>
+                <p>Tell us what went wrong so we can improve the experience for the next version.</p>
+            </div>
+            <div class="delete-reason-grid" id="deleteReasonGrid">
+                <button class="delete-reason-card" type="button" data-reason="I found better matches elsewhere">
+                    <i class="fas fa-heart-crack"></i>
+                    <span>Better matches elsewhere</span>
+                </button>
+                <button class="delete-reason-card" type="button" data-reason="I am concerned about privacy">
+                    <i class="fas fa-lock"></i>
+                    <span>Privacy concern</span>
+                </button>
+                <button class="delete-reason-card" type="button" data-reason="Too many unwanted chats">
+                    <i class="fas fa-comments"></i>
+                    <span>Unwanted chats</span>
+                </button>
+                <button class="delete-reason-card" type="button" data-reason="I am taking a break">
+                    <i class="fas fa-moon"></i>
+                    <span>Taking a break</span>
+                </button>
+                <button class="delete-reason-card" type="button" data-reason="App is not useful for me">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Not useful</span>
+                </button>
+                <button class="delete-reason-card" type="button" data-reason="Other reason">
+                    <i class="fas fa-pen-nib"></i>
+                    <span>Other reason</span>
+                </button>
+            </div>
+            <label class="delete-feedback-field">
+                Add more detail
+                <textarea id="deleteFeedback" rows="3" maxlength="240" placeholder="Optional feedback..."></textarea>
+            </label>
+            <p class="delete-account-message" id="deleteAccountMessage" aria-live="polite"></p>
+            <div class="delete-account-actions">
+                <button id="cancelDeleteAccount" class="keep-account-btn" type="button">Keep my account</button>
+                <button id="confirmDeleteAccount" class="final-delete-btn" type="button" disabled>
+                    <i class="fas fa-trash-can"></i> Delete forever
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="profile.js?v=auth-until-logout-1"></script>
+</body>
+</html>

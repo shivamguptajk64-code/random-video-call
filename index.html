@@ -1,0 +1,225 @@
+  <!DOCTYPE html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description"
+        content="VibeMatch - Meet new people around the world instantly with random video chat. No download, no credit card, 100% free.">
+    <title>VibeMatch - Random Video Chat</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preload" as="image" href="homepage.mobile.png" media="(max-width: 700px)">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Luckiest+Guy&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=homepage-top-token-2">
+    <link rel="stylesheet" href="responsive.css?v=community-nav-gap-1">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" style="position: fixed; top: 0; left: 0; right: 0; width: 100%; z-index: 9999;">
+        <div class="nav-left">
+            <a href="#" class="logo">
+                <img src="favicon.png" alt="Logo" class="nav-logo-img">
+                <span class="logo-copy">
+                    <span class="logo-text">VIBE<span class="logo-highlight">MATCH</span></span>
+                </span>
+            </a>
+        </div>
+        <ul class="nav-center">
+            <li><a href="videochat.html" class="nav-link">Video Chat</a></li>
+    <li><a href="message.html" class="nav-link">Messages</a></li>
+    <li><a href="about.html" class="nav-link">About</a></li>
+    <li><a href="help.html" class="nav-link">Help Center</a></li>
+        </ul>
+        <div class="home-token-slot" id="homeMessageTokenSlot" aria-label="Free daily chat passes"></div>
+        <div class="nav-right">
+            <a href="message.html" class="nav-icon" title="Messages">
+                <i class="fas fa-comment-dots"></i>
+                <span class="nav-count-badge" id="navMessageCount"></span>
+            </a>
+            <a href="notification.html" class="nav-icon" title="Notifications">
+                <i class="fas fa-bell"></i>
+                <span class="nav-count-badge" id="navNotificationCount"></span>
+            </a>
+            <a href="shop.html" class="nav-icon"  title="Shop">
+                <i class="fas fa-shopping-bag"></i>
+            </a>
+            <a href="profile.html" class="nav-icon" title="Profile">
+                <i class="fas fa-user-circle"></i>
+                <img id="navProfilePhoto" class="nav-profile-photo" alt="Profile" style="display:none;">
+            </a>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="static-meet">Meet</div>
+            <h1 class="hero-title">
+    <span id="typewriter" class="typewriter-text"></span><span class="cursor">|</span>
+</h1>
+
+            <p class="hero-description">
+                <span class="hero-description-line">Meet new people around the world</span>
+                <span class="hero-description-line">instantly with just one click</span>
+            </p>
+
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="startChat">
+                    <i class="fas fa-video"></i> Start Video Chat
+                </button>
+                <button class="btn btn-secondary" id="signIn" type="button">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </div>
+
+            <div class="features-row">
+                <button class="feature-item" type="button" data-target="about.html">
+                    <span class="feature-text">Global matches</span>
+                </button>
+                <button class="feature-item" type="button" data-target="videochat.html">
+                    <span class="feature-text">Live video chat</span>
+                </button>
+                <button class="feature-item" type="button" data-target="help.html">
+                    <span class="feature-text">Safe conversations</span>
+                </button>
+                <button class="feature-item" type="button" data-target="login.html">
+                    <span class="feature-text">Instant setup</span>
+                </button>
+                <button class="feature-item" type="button" data-target="videochat.html">
+                    <span id="featureUsersCount" class="feature-text">80,000+ users</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" aria-labelledby="faqTitle">
+        <div class="faq-inner">
+            <span class="faq-spark" aria-hidden="true"></span>
+            <h2 id="faqTitle">FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            How does interest matching work?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>VibeMatch uses your selected country, language, and interests to connect you with people who feel more relevant to your vibe.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            How does VibeMatch help keep chats safer?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You can skip, stop, or report a chat anytime. VibeMatch is built to help you move away quickly if a conversation does not feel comfortable.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question faq-question--single-line" type="button" aria-expanded="false">
+                            Why choose VibeMatch to chat with strangers online?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>It is fast, browser-based, and simple. You can start meeting new people without downloads, complicated setup, or a credit card.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-column">
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            Can I use VibeMatch on my phone?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes. VibeMatch works on mobile, tablet, and desktop browsers, so you can start a video chat from the device you already use.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            Do I need to create an account first?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, you need to create an account first. This helps VibeMatch keep your profile, preferences, and chat experience more organized and personalized.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" type="button" aria-expanded="false">
+                            Is VibeMatch free to use?
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, VibeMatch is free to use for basic features and limited friend connections. If you want access to more advanced features, premium matching, and a richer chat experience, you can choose a subscription plan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-center-content">
+            <h2 class="footer-logo">VIBEMATCH&reg;</h2>
+            <div class="footer-badge">
+                <i class="fas fa-users"></i> VibeMatch.FAMILY
+            </div>
+            
+            <div class="footer-links">
+                <a href="#" onclick="return false;">About VibeMatch</a> |
+                <a href="#" onclick="return false;">Guide</a> |
+                <a href="#" onclick="return false;">Safety tips</a> |
+                <a href="community-guidelines.html" class="community-guidelines-link" data-open-guidelines="true">Community Guidelines</a> |
+                <a href="#" onclick="return false;">Terms</a> |
+                <a href="#" onclick="return false;" style="font-weight: bold; color: #fff;">Privacy</a> |
+                <a href="#" onclick="return false;">CCPA Addendum</a> |
+                <a href="#" onclick="return false;">Customer Service</a> |
+                <a href="#" onclick="return false;">Cookie Policy</a> |
+                <a href="#" onclick="return false;">Your Privacy Choices <i class="fas fa-check-circle"></i></a>
+            </div>
+
+            <div class="footer-info">
+                <span class="footer-info-item">CEO : Shivam gupta</span>
+                <span class="footer-divider">|</span>
+                <span class="footer-info-item">Email: shivamguptajk782@gmail.com</span>
+                <span class="footer-divider">|</span>
+                <span class="footer-info-item">Address : 123 Vibe Street, Tech City</span>
+                <span class="footer-divider">|</span>
+                <span class="footer-info-item">Business Number : 123-45-6789</span>
+            </div>
+            
+            <div class="footer-copyright">
+                &copy; 2026 VibeMatch LLC. All rights reserved.
+            </div>
+
+            <div class="footer-apps">
+                <a href="#" class="app-btn" onclick="return false;"><i class="fab fa-apple"></i> App Store</a>
+                <a href="#" class="app-btn" onclick="return false;"><i class="fab fa-google-play"></i> Google Play</a>
+            </div>
+
+            <div class="social-icons centered-socials">
+                <a href="#" onclick="return false;"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" onclick="return false;" title="X" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" onclick="return false;"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="token-wallet.js?v=chat-pass-unlimited-1"></script>
+    <script src="script.js?v=homepage-token-1"></script>
+    
+</body>
+</html>

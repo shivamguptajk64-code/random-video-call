@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>VibeMatch - Video Chat</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="videochat.css?v=smart-match-unlimited-1">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body class="setup-locked">
+<!-- Top Bar -->
+<nav class="vc-navbar">
+    <a href="index.html" class="vc-logo">
+        <img src="favicon.png" alt="Logo" class="vc-logo-img">
+        <span class="brand-wordmark">VIBE<span>MATCH</span></span>
+    </a>
+    <div class="vc-token-slot" id="messageTokenSlot" aria-label="Free daily chat passes"></div>
+    <div class="vc-navbar-right">
+        <span class="online-badge">
+            <span class="dot"></span>
+            <span id="onlineCount">0</span> online
+        </span>
+        <a href="index.html" class="vc-exit-btn">
+            <i class="fas fa-times"></i> Exit
+        </a>
+    </div>
+</nav>
+
+<!-- Main Layout -->
+<main class="vc-main">
+
+    <!-- Left: Remote Video (Stranger) -->
+    <div class="video-box remote-box" id="remoteBox">
+        <img src="homepage.png" alt="Stranger section scene" class="stranger-section-image">
+        <video id="remoteVideo" autoplay playsinline disablepictureinpicture></video>
+        <div class="video-label remote-label">Stranger</div>
+        <button class="report-float-btn" id="reportBtn" title="Report User" type="button">
+            <i class="fas fa-flag"></i>
+            <span>Report</span>
+        </button>
+        <button class="add-friend-float-btn" id="addFriendBtn" title="Add Friend" type="button" disabled>
+            <i class="fas fa-user-plus"></i>
+            <span>Add Friend</span>
+        </button>
+
+        <!-- Waiting / Finding Screen -->
+        <div class="overlay-state" id="waitingOverlay">
+            <canvas id="waitingParticlesCanvas" class="waiting-particles-canvas" aria-hidden="true"></canvas>
+            <p class="waiting-text" id="waitingText">
+                Press <button class="inline-start-btn" id="overlayStartBtn" type="button">Start</button> to find someone
+            </p>
+        </div>
+
+        <!-- Stranger Info -->
+        <div class="stranger-info" id="strangerInfo" style="display:none;">
+            <span class="stranger-badge">
+                <i class="fas fa-user"></i> <span id="strangerName">Stranger</span>
+            </span>
+            <span class="stranger-country" id="strangerCountry"></span>
+        </div>
+    </div>
+
+    <!-- Right: Local Video (You) -->
+    <div class="video-box local-box" id="localBox">
+        <video id="localVideo" autoplay playsinline muted disablepictureinpicture></video>
+        <canvas id="cartoonFilterCanvas" class="cartoon-filter-canvas" aria-hidden="true"></canvas>
+        <div class="video-label local-label">You</div>
+        <div class="face-filter-overlay" id="faceFilterOverlay" aria-hidden="true"></div>
+
+        <!-- Camera Off Overlay -->
+        <div class="cam-off-overlay" id="camOffOverlay" style="display:none;">
+            <i class="fas fa-video-slash"></i>
+            <span>Camera Off</span>
+        </div>
+
+        <div class="quick-chat-stack" id="quickChatStack">
+            <div class="quick-chat-header" id="quickChatHeader">Chat with Stranger</div>
+            <div class="quick-chat-messages" id="quickChatMessages"></div>
+            <div class="quick-message-bar" id="quickMessageBar">
+                <input type="text" id="quickChatInput" placeholder="Connect to message..." maxlength="200" autocomplete="off" disabled>
+                <button id="quickChatSendBtn" title="Send message" type="button" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+                <span class="quick-message-feedback" id="quickMessageFeedback" aria-live="polite"></span>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- Bottom Controls -->
+<div class="vc-controls">
+
+    <!-- Left Controls -->
+    <div class="controls-left">
+        <button class="ctrl-btn" id="micBtn" title="Mute/Unmute">
+            <i class="fas fa-microphone"></i>
+        </button>
+        <button class="ctrl-btn" id="flipCamBtn" title="Switch Camera">
+            <i class="fas fa-camera-rotate"></i>
+        </button>
+        <button class="ctrl-btn" id="camBtn" title="Camera On/Off">
+            <i class="fas fa-video"></i>
+        </button>
+        <button class="ctrl-btn" id="effectsBtn" title="Filters">
+            <i class="fas fa-magic"></i>
+        </button>
+    </div>
+
+    <!-- Center Controls (Main Actions) -->
+    <div class="controls-center">
+        <button class="ctrl-btn-main start-btn" id="startBtn">
+            <i class="fas fa-play"></i> Start
+        </button>
+        <button class="ctrl-btn-main skip-btn" id="skipBtn" disabled>
+            <i class="fas fa-forward"></i> Next
+        </button>
+        <button class="ctrl-btn-main stop-btn" id="stopBtn" disabled>
+            <i class="fas fa-stop"></i> Stop
+        </button>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="controls-right">
+        <button class="ctrl-btn" id="fullscreenBtn" title="Fullscreen">
+            <i class="fas fa-expand"></i>
+        </button>
+    </div>
+
+</div>
+
+<!-- Preference Setup Modal -->
+<div class="modal-overlay setup-modal-overlay" id="setupModal">
+    <a href="index.html" class="setup-home-link setup-overlay-home-link" aria-label="Back to home" title="Back">
+        <span aria-hidden="true">&lt;</span>
+    </a>
+    <div class="setup-heading" draggable="false">
+        <h2 id="setupTitle">Please select your gender</h2>
+        <p id="setupSubtitle">Tell us who you want to meet first.</p>
+    </div>
+    <div class="setup-modal" draggable="false">
+        <div class="setup-grid">
+            <section class="setup-section active" data-step="0">
+                <h3><i class="fas fa-venus-mars"></i> Gender</h3>
+                <div class="choice-row" data-choice-group="gender">
+                    <button class="choice-chip" type="button" data-value="Male">Male</button>
+                    <button class="choice-chip" type="button" data-value="Female">Female</button>
+                    <button class="choice-chip" type="button" data-value="Other">Other</button>
+                </div>
+            </section>
+
+            <section class="setup-section" data-step="1">
+                <h3><i class="fas fa-globe"></i> Country</h3>
+                <input class="setup-search" id="countrySearch" type="text" placeholder="Search country...">
+                <div class="choice-row searchable-choice" id="countryChoices" data-choice-group="country">
+                </div>
+            </section>
+
+            <section class="setup-section setup-section-wide" data-step="2">
+                <h3><i class="fas fa-heart"></i> Interests</h3>
+                <div class="choice-row multi-choice" data-choice-group="interests">
+                    <button class="choice-chip" type="button" data-value="Music">Music</button>
+                    <button class="choice-chip" type="button" data-value="Movies">Movies</button>
+                    <button class="choice-chip" type="button" data-value="Travel">Travel</button>
+                    <button class="choice-chip" type="button" data-value="Gaming">Gaming</button>
+                    <button class="choice-chip" type="button" data-value="Anime">Anime</button>
+                    <button class="choice-chip" type="button" data-value="Fitness">Fitness</button>
+                    <button class="choice-chip" type="button" data-value="Study">Study</button>
+                    <button class="choice-chip" type="button" data-value="Dating">Dating</button>
+                </div>
+            </section>
+
+            <section class="setup-section setup-section-wide" data-step="3">
+                <h3><i class="fas fa-language"></i> Language</h3>
+                <input class="setup-search" id="languageSearch" type="text" placeholder="Search language...">
+                <div class="choice-row searchable-choice language-choice multi-choice" id="languageChoices" data-choice-group="language">
+                </div>
+            </section>
+
+            <section class="setup-section setup-section-wide" data-step="4">
+                <h3><i class="fas fa-wand-magic-sparkles"></i> What is your vibe today?</h3>
+                <div class="choice-row intent-choice" data-choice-group="intent">
+                    <button class="choice-chip intent-chip" type="button" data-value="Make friends"><i class="fas fa-user-group"></i><span>Make friends<small>Easy, friendly conversations</small></span></button>
+                    <button class="choice-chip intent-chip" type="button" data-value="Dating"><i class="fas fa-heart"></i><span>Dating<small>Meet someone meaningful</small></span></button>
+                    <button class="choice-chip intent-chip" type="button" data-value="Practice language"><i class="fas fa-language"></i><span>Practice language<small>Talk and learn together</small></span></button>
+                    <button class="choice-chip intent-chip" type="button" data-value="Just chat"><i class="fas fa-comments"></i><span>Just chat<small>See where the vibe goes</small></span></button>
+                </div>
+            </section>
+
+            <section class="setup-section setup-section-wide" data-step="5">
+                <div class="smart-match-ready">
+                    <span class="smart-match-icon"><i class="fas fa-sparkles"></i></span>
+                    <h3>Your smart match is ready</h3>
+                    <p>We will use your choices to prioritize people who fit your vibe. You can still skip anytime and basic video chat has no time limit.</p>
+                    <div class="match-summary" id="matchSummary"></div>
+                    <div class="unlimited-note"><i class="fas fa-infinity"></i><span><b>No 7-second wait</b><small>Next is available instantly, and messages stay unlimited during your match.</small></span></div>
+                </div>
+            </section>
+        </div>
+
+        <div class="setup-footer">
+            <p class="setup-error" id="setupError" aria-live="polite"></p>
+            <a href="community-guidelines.html" class="setup-guidelines-link" target="_blank" rel="noopener">
+                <i class="fas fa-shield-heart"></i> Community Guidelines
+            </a>
+            <div class="step-dots" id="setupStepDots">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="setup-next-btn" id="setupNextBtn" type="button" disabled>
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Filter/Effects Modal -->
+<div class="modal-overlay" id="effectsModal" style="display:none;">
+    <div class="modal-box" draggable="false">
+        <div class="modal-header">
+            <h3><i class="fas fa-magic"></i> Video Filters</h3>
+            <button class="modal-close" id="closeEffects">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="effects-grid">
+            <button class="effect-btn active" data-mask="none"><span class="filter-thumb preview-normal"></span><span>Normal</span><span class="selected-mark">Selected</span></button>
+            <button class="effect-btn" data-mask="cartoon"><span class="filter-thumb preview-cartoon"></span><span>Cartoon Pop</span></button>
+            <button class="effect-btn" data-mask="anime"><span class="filter-thumb preview-anime"></span><span>Anime Face</span></button>
+            <button class="effect-btn" data-mask="kawaii"><span class="filter-thumb preview-kawaii"></span><span>Kawaii Glow</span></button>
+            <button class="effect-btn" data-mask="comic"><span class="filter-thumb preview-comic"></span><span>Comic Ink</span></button>
+            <button class="effect-btn" data-mask="manga-blue"><span class="filter-thumb preview-manga-blue"></span><span>Manga Blue</span></button>
+            <button class="effect-btn" data-mask="toon-warm"><span class="filter-thumb preview-toon-warm"></span><span>Toon Warm</span></button>
+            <button class="effect-btn" data-mask="dream-anime"><span class="filter-thumb preview-dream-anime"></span><span>Dream Anime</span></button>
+            <button class="effect-btn" data-mask="manga-bw"><span class="filter-thumb preview-manga-bw"></span><span>Manga B&W</span></button>
+            <button class="effect-btn" data-mask="soft-face"><span class="filter-thumb preview-soft-face"></span><span>Soft Face</span></button>
+            <button class="effect-btn" data-mask="neon"><span class="filter-thumb preview-neon"></span><span>Neon Toon</span></button>
+            <button class="effect-btn" data-mask="ghost"><span class="filter-thumb preview-ghost"></span><span>Ghost Face</span></button>
+            <button class="effect-btn" data-mask="hacker"><span class="filter-thumb preview-hacker"></span><span>Hacker Face</span></button>
+            <button class="effect-btn" data-mask="horror"><span class="filter-thumb preview-horror"></span><span>Dark Horror</span></button>
+            <button class="effect-btn" data-mask="matrix"><span class="filter-thumb preview-matrix"></span><span>Matrix Glow</span></button>
+        </div>
+    </div>
+</div>
+
+<!-- Report Modal -->
+<div class="modal-overlay" id="reportModal" style="display:none;">
+    <div class="modal-box" draggable="false">
+        <div class="modal-header">
+            <h3><i class="fas fa-flag"></i> Report User</h3>
+            <button class="modal-close" id="closeReport">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <p class="modal-subtitle">Why are you reporting this user?</p>
+        <div class="report-options">
+            <label><input type="radio" name="report" value="nudity"> Nudity / Sexual content</label>
+            <label><input type="radio" name="report" value="harassment"> Harassment / Bullying</label>
+            <label><input type="radio" name="report" value="spam"> Spam / Bot</label>
+            <label><input type="radio" name="report" value="underage"> Underage user</label>
+            <label><input type="radio" name="report" value="other"> Other</label>
+        </div>
+        <button class="report-submit-btn" id="reportSubmitBtn">
+            <i class="fas fa-paper-plane"></i> Submit Report
+        </button>
+        <button class="report-block-btn" id="reportBlockBtn" type="button">
+            <i class="fas fa-ban"></i> Block User
+        </button>
+    </div>
+</div>
+
+<!-- Permission Denied Modal -->
+<div class="modal-overlay" id="permissionModal" style="display:none;">
+    <div class="modal-box" draggable="false">
+        <div class="modal-header">
+            <h3><i class="fas fa-video-slash"></i> Camera Access Required</h3>
+        </div>
+        <p class="modal-subtitle">
+            VibeMatch needs access to your camera and microphone.<br>
+            Please allow access in your browser settings.
+        </p>
+        <button class="report-submit-btn" onclick="document.getElementById('permissionModal').style.display='none'">
+            OK, Got it
+        </button>
+    </div>
+</div>
+
+<script src="token-wallet.js?v=chat-pass-unlimited-1"></script>
+<script src="videochat.js?v=smart-match-unlimited-1"></script>
+</body>
+</html>

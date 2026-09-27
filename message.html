@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+    <title>VibeMatch Messages</title>
+
+    <link rel="stylesheet" href="message.css?v=message-token-1">
+    <link rel="stylesheet" href="responsive.css?v=message-back-fixed-1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <a href="index.html" class="back-btn" aria-label="Back to home">
+        <span>&lt;</span>
+    </a>
+
+    <div class="container">
+
+        <!-- SIDEBAR -->
+
+        <div class="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="mobile-inbox-header">
+                    <a href="index.html" class="mobile-message-back" aria-label="Back to home">
+                        <span>&lt;</span>
+                    </a>
+                    <h2>Messages</h2>
+                    <div class="message-tabs" aria-label="Message sections">
+                        <button class="message-tab active" id="inboxTab" type="button">Inbox</button>
+                        <button class="message-tab" id="requestsTab" type="button">Requests</button>
+                    </div>
+                </div>
+
+                <h1>Messages</h1>
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search conversations">
+                </div>
+
+            </div>
+
+            <!-- CHAT LIST -->
+
+            <div class="chat-list">
+
+                <!-- CHAT 1 -->
+
+                <div class="chat">
+
+                    <div class="user-icon">
+                        O
+                    </div>
+
+                    <div class="chat-details">
+
+                        <div class="chat-top">
+
+                            <h2>Olivia</h2>
+
+                            <span>2m</span>
+
+                        </div>
+
+                        <div class="chat-bottom">
+
+                            <p>Typing...</p>
+
+                            <div class="badge">
+                                2
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CHAT 2 -->
+
+                <div class="chat">
+
+                    <div class="user-icon">
+                        D
+                    </div>
+
+                    <div class="chat-details">
+
+                        <div class="chat-top">
+
+                            <h2>Daniel</h2>
+
+                            <span>5m</span>
+
+                        </div>
+
+                        <div class="chat-bottom">
+
+                            <p>See you later.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- CHAT 3 -->
+
+                <div class="chat">
+
+                    <div class="user-icon">
+                        S
+                    </div>
+
+                    <div class="chat-details">
+
+                        <div class="chat-top">
+
+                            <h2>Sophia</h2>
+
+                            <span>1h</span>
+
+                        </div>
+
+                        <div class="chat-bottom">
+
+                            <p>That looks amazing.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CHAT AREA -->
+
+        <div class="chat-area">
+
+            <!-- TOP BAR -->
+
+            <div class="top-bar">
+
+                <button id="mobileChatBackBtn" class="mobile-chat-back" type="button" aria-label="Back to messages">
+                    <span>&lt;</span>
+                </button>
+
+                <div class="profile">
+
+                    <div class="user-icon">
+                        O
+                    </div>
+
+                    <div>
+
+                        <h2>Olivia</h2>
+
+                        <span class="online-status">
+                            Online
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="chat-top-actions">
+                    <button class="chat-call-btn voice-call-btn" id="voiceCallBtn" type="button" aria-label="Start voice call">
+                        <i class="fa-solid fa-phone"></i>
+                    </button>
+                    <button class="chat-call-btn video-call-btn" id="videoCallBtn" type="button" aria-label="Start video call">
+                        <i class="fa-solid fa-video"></i>
+                    </button>
+                    <button class="chat-options-btn" id="chatOptionsBtn" type="button" aria-label="Chat options">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- MESSAGE BODY -->
+
+            <div class="messages" id="messages">
+
+                <div class="message received">
+
+                    <p>
+                        Hey, how's your day going?
+                    </p>
+
+                    <span>
+                        8:31 PM
+                    </span>
+
+                </div>
+
+                <div class="message sent">
+
+                    <p>
+                        Pretty good. Working on VibeMatch.
+                    </p>
+
+                    <span>
+                        8:32 PM
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- TYPING -->
+
+            <div class="typing" id="typing">
+                Olivia is typing...
+            </div>
+
+            <!-- INPUT -->
+
+            <div class="message-input">
+
+                <div class="reply-preview" id="replyPreview" hidden>
+                    <div>
+                        <strong id="replyPreviewName">Replying</strong>
+                        <p id="replyPreviewText"></p>
+                    </div>
+                    <button id="cancelReplyBtn" type="button" aria-label="Cancel reply">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <input type="text"
+                    id="messageInput"
+                    placeholder="Write a message...">
+
+                <button id="sendBtn">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="token-wallet.js?v=chat-pass-unlimited-1"></script>
+    <script src="message.js?v=message-token-1"></script>
+
+</body>
+
+</html>

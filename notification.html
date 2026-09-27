@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>VibeMatch Notifications</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="notification.css?v=message-token-1">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body>
+    <main class="notifications-app">
+        <header class="notifications-header">
+            <a href="index.html" class="back-link" aria-label="Back to home" title="Back">
+                <span aria-hidden="true">&lt;</span>
+            </a>
+            <div class="notifications-header-row">
+                <h1>Notifications</h1>
+                <button id="refreshNotifications" class="refresh-icon-btn" type="button" aria-label="Refresh notifications">
+                    <i class="fas fa-rotate"></i>
+                </button>
+            </div>
+        </header>
+
+        <nav class="notification-tabs" aria-label="Notification filters">
+            <button class="tab active" type="button" data-filter="all">All</button>
+            <button class="tab" type="button" data-filter="friends">Friends</button>
+            <button class="tab" type="button" data-filter="messages">Messages</button>
+            <button class="tab" type="button" data-filter="video">Video Chat</button>
+        </nav>
+
+        <p class="notification-list-label" id="notificationListLabel">All</p>
+        <div class="notification-filter-bar" aria-label="Notification sort and status filters">
+            <label class="notification-filter-pill">
+                <select id="notificationStatusFilter">
+                    <option value="all">Status</option>
+                    <option value="unread">Unread</option>
+                    <option value="read">Read</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </label>
+            <label class="notification-filter-pill is-active">
+                <select id="notificationTypeFilter">
+                    <option value="all">All activity</option>
+                    <option value="friends">Friends</option>
+                    <option value="messages">Messages</option>
+                    <option value="video">Video Chat</option>
+                    <option value="account">Account</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </label>
+            <label class="notification-filter-pill">
+                <select id="notificationSortFilter">
+                    <option value="recent">Recent</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+                <i class="fas fa-chevron-down"></i>
+            </label>
+        </div>
+
+        <section class="notification-list" id="notificationList" aria-label="Notifications">
+        </section>
+    </main>
+
+    <script src="token-wallet.js?v=chat-pass-unlimited-1"></script>
+    <script src="notification.js?v=clear-badge-on-open-1"></script>
+</body>
+</html>
